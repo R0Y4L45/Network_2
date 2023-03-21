@@ -1,0 +1,15 @@
+D:\Repos\NetworkProgramingHw2\Client\bin\Debug\net7.0\Client.exe
+D:\Repos\NetworkProgramingHw2\Client\bin\Debug\net7.0\Client.deps.json
+D:\Repos\NetworkProgramingHw2\Client\bin\Debug\net7.0\Client.runtimeconfig.json
+D:\Repos\NetworkProgramingHw2\Client\bin\Debug\net7.0\Client.dll
+D:\Repos\NetworkProgramingHw2\Client\bin\Debug\net7.0\Client.pdb
+D:\Repos\NetworkProgramingHw2\Client\obj\Debug\net7.0\Client.csproj.AssemblyReference.cache
+D:\Repos\NetworkProgramingHw2\Client\obj\Debug\net7.0\Client.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repos\NetworkProgramingHw2\Client\obj\Debug\net7.0\Client.AssemblyInfoInputs.cache
+D:\Repos\NetworkProgramingHw2\Client\obj\Debug\net7.0\Client.AssemblyInfo.cs
+D:\Repos\NetworkProgramingHw2\Client\obj\Debug\net7.0\Client.csproj.CoreCompileInputs.cache
+D:\Repos\NetworkProgramingHw2\Client\obj\Debug\net7.0\Client.dll
+D:\Repos\NetworkProgramingHw2\Client\obj\Debug\net7.0\refint\Client.dll
+D:\Repos\NetworkProgramingHw2\Client\obj\Debug\net7.0\Client.pdb
+D:\Repos\NetworkProgramingHw2\Client\obj\Debug\net7.0\Client.genruntimeconfig.cache
+D:\Repos\NetworkProgramingHw2\Client\obj\Debug\net7.0\ref\Client.dll

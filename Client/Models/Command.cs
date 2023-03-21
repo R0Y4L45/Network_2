@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Client.Models;
+﻿namespace Client.Models;
 
 public class Command
 {
@@ -13,6 +7,6 @@ public class Command
     public const string RUN = "run";
     public const string HELP = "help";
 
-    public string Text { get; set; }
-    public string Param { get; set; }
+    public string? Text { get; set; }
+    public string? Param { get; set; }
 }

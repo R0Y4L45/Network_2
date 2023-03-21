@@ -2,6 +2,9 @@
 using System.Net.Sockets;
 using System.Text.Json;
 
+Command? command = null;
+string? commandText, param, jsonStr, response;
+
 var client = new TcpClient("127.0.0.1", 1234);
 
 var stream = client.GetStream();
@@ -9,75 +12,102 @@ var stream = client.GetStream();
 var bw = new BinaryWriter(stream);
 var br = new BinaryReader(stream);
 
-var CommandText = string.Empty;
-var CommandParam = string.Empty;
 
 while (true)
 {
-    Console.WriteLine("Enter Command Text");
-    CommandText = Console.ReadLine();
-    Console.WriteLine("Enter Command Param");
-    CommandParam = Console.ReadLine();
-    if (string.IsNullOrEmpty(CommandText) || string.IsNullOrEmpty(CommandParam))
+    Console.WriteLine("\nEnter Command : ");
+    commandText = Console.ReadLine();
+
+    if (string.IsNullOrEmpty(commandText))
     {
-        Console.WriteLine("You entered an error, please try again");
+        Console.WriteLine("You entered command is false...");
         await Task.Delay(100);
         continue;
     }
 
-    var command = new Command
+    command = new Command
     {
-        Text = CommandText,
-        Param = CommandParam
+        Text = commandText
     };
 
     switch (command.Text.ToLower())
     {
         case Command.HELP:
             {
-                var jsonStr = JsonSerializer.Serialize(command);
+                jsonStr = JsonSerializer.Serialize(command);
                 bw.Write(jsonStr);
                 await Task.Delay(50);
-                var response = br.ReadString();
-                Console.WriteLine(response);
+                response = br.ReadString();
+                Console.WriteLine('\n' + response);
                 break;
             }
         case Command.PROCLIST:
             {
-                var jsonStr = JsonSerializer.Serialize(command);
+
+                jsonStr = JsonSerializer.Serialize(command);
                 bw.Write(jsonStr);
                 await Task.Delay(50);
-                var response = br.ReadString();
-                Console.WriteLine(response);
+                response = br.ReadString();
+                Console.WriteLine("Processes : \n" + response);
+
                 break;
             }
         case Command.RUN:
             {
-                var jsonStr = JsonSerializer.Serialize(command);
-                bw.Write(jsonStr);
-                await Task.Delay(50);
+                Console.WriteLine("Enter process name : ");
+                param = Console.ReadLine();
+                if (string.IsNullOrEmpty(param))
+                {
+                    Console.WriteLine("You entered process name is false...");
+                    await Task.Delay(100);
 
-                var responseBool = br.ReadBoolean();
-                if (responseBool is true)
-                    Console.WriteLine("Process succesfully ended");
+                    break;
+                }
                 else
-                    Console.WriteLine("Process couldn't ended");
-                break;
+                {
+                    command.Param = param;
+                    jsonStr = JsonSerializer.Serialize(command);
+                    bw.Write(jsonStr);
+                    await Task.Delay(50);
+
+                    var responseBool = br.ReadBoolean();
+                    if (responseBool is true)
+                        Console.WriteLine("Process succesfully started");
+                    else
+                        Console.WriteLine("Process couldn't started");
+
+                    break;
+                }
             }
         case Command.KILL:
             {
-                var jsonStr = JsonSerializer.Serialize(command);
-                bw.Write(jsonStr);
-                await Task.Delay(50);
+                Console.WriteLine("Enter process name : ");
+                param = Console.ReadLine();
+                if (string.IsNullOrEmpty(param))
+                {
+                    Console.WriteLine("You entered process name is false...");
+                    await Task.Delay(100);
 
-                var responseBool = br.ReadBoolean();
-                if (responseBool is true)
-                    Console.WriteLine("Process succesfully ended");
+                    break;
+                }
                 else
-                    Console.WriteLine("Process couldn't ended");
-                break;
+                {
+                    command.Param = param;
+                    jsonStr = JsonSerializer.Serialize(command);
+                    bw.Write(jsonStr);
+                    await Task.Delay(50);
+
+                    var responseBool = br.ReadBoolean();
+                    if (responseBool is true)
+                        Console.WriteLine("Process succesfully ended");
+                    else
+                        Console.WriteLine("Process couldn't ended");
+
+                    break;
+                }
             }
         default:
+            Console.WriteLine("\nYou entered command is false...\n");
             break;
     }
 
